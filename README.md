@@ -53,10 +53,7 @@ I've used docker to create the containers for the database.
    ```sh
    docker run --name jwtauth -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
    ```
-4. Create database named jwtauth
-   ```sh
-   docker run --name jwtauth -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
-   ```
+4. Create database named: jwtauth
 
 ## Contributing
 
