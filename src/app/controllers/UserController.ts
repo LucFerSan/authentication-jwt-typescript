@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
+
 import User from '../models/User';
 
 class UserController {
@@ -16,9 +17,11 @@ class UserController {
     const user = userRepository.create({ name, email, password });
     await userRepository.save(user);
 
-    delete user.password;
-
-    return res.json(user);
+    return res.json({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+    });
   }
 }
 
