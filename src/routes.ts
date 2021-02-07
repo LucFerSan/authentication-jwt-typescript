@@ -3,7 +3,7 @@ import { Router } from 'express';
 const router = Router();
 
 router.get('/', (req, res) => {
-  return res.json({ message: 'Hello World' });
+  return res.json({ message: 'Hello Typescript' });
 });
 
 export default router;
