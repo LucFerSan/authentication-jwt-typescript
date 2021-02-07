@@ -49,11 +49,15 @@ I've used docker to create the containers for the database.
    ```sh
    yarn
    ```
-3. Create a docker container
+3. Add a .env file on the root of the project with the JWT_SECRET
+   ```sh
+   JWT_SECRET=example
+   ```
+4. Create a docker container
    ```sh
    docker run --name jwtauth -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
    ```
-4. Create database named: jwtauth
+5. Create database named: jwtauth
 
 ## Contributing
 
