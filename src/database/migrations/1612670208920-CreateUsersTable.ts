@@ -28,7 +28,6 @@ export default class CreateUsersTable1612670208920
           {
             name: 'password',
             type: 'varchar',
-            isUnique: true,
           },
         ],
       }),
