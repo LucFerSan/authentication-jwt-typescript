@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
+import envConfig from '../../config/environment.config';
 
 interface TokenPayload {
   id: string;
@@ -7,22 +8,22 @@ interface TokenPayload {
   exp: number;
 }
 
-export default (req: Request, res: Response, next: NextFunction) => {
+export default (req: Request, res: Response, next: NextFunction): void => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader) {
-    return res.status(401).json({ error: 'No token provided.' });
+    throw new Error('No token provided');
   }
 
   const [, token] = authHeader.split(' ');
 
   try {
-    const decoded = jwt.verify(token, 'secret');
+    const decoded = jwt.verify(token, envConfig.jwtSecret);
     const { id } = decoded as TokenPayload;
     req.userId = id;
 
     return next();
   } catch {
-    return res.status(401).json({ error: 'Token not valid.' });
+    throw new Error('Invalid token');
   }
 };

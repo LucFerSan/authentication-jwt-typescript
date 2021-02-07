@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import envConfig from '../../config/environment.config';
 
 import User from '../models/User';
 
@@ -22,7 +23,9 @@ class SessionController {
       return res.status(401).json({ error: 'Incorrect password.' });
     }
 
-    const token = jwt.sign({ id: user.id }, 'secret', { expiresIn: '1d' });
+    const token = jwt.sign({ id: user.id }, envConfig.jwtSecret, {
+      expiresIn: '1d',
+    });
 
     return res.json({
       user: {
